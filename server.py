@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", allCountries = w)
 
 @app.route("/country/<n>")
 def country(n):

@@ -6,7 +6,11 @@
 
     <body>
         <h1>World FactBook</h1>
-        <div><a href="country/117">Myanmar</a></div>
-        <div><a href="country/184">United Kingdom</a></div>
+        {% for c in allCountries %}
+        <div><a href=country/{{c.id}}>{{c.name}}</a></div>
+        {% endfor %}
+
+        <hr> Delete this one day 
+        {{allCountries}}
     </body>
 </html>
