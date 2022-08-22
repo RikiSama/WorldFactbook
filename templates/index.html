@@ -6,11 +6,14 @@
 
     <body>
         <h1>World FactBook</h1>
+        <div>
+            <h2>Search</h2>
+            <form action="search">
+                <label>Name of country <input name=target></label>
+            </form>
+        </div>
         {% for c in allCountries %}
         <div><a href=country/{{c.id}}>{{c.name}}</a></div>
         {% endfor %}
-
-        <hr> Delete this one day 
-        {{allCountries}}
     </body>
 </html>
