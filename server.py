@@ -8,4 +8,7 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/country/<n>")
+def country(n):
+    return render_template("country.html", country=w[int(n)])
 app.run(debug=True)
