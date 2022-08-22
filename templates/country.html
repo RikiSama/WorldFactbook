@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <link rel="stylesheet" href="/static/world.css">
     </head>
     <body>
-        <h1>details of a country</h1>
-        {{country}}
+        <h1>{{country.name}}</h1>
+        <div><img src ={{country.flag}}></div>
+        <table>
+            <tr>
+                <td>Continent</td><td>{{country.continent}}</td>
+                <td>Capital</td><td>{{country.capital}}</country></td>
+            </tr>
+        </table>
     </body>
 </html>
