@@ -22,7 +22,9 @@ def continent(cont):
         )
 @app.route("/api/continentList")
 def continentList():
-    return {"list":["Africa","Asia","Europe"]}
+    clist=list(set([c['continent'] for c in w]))
+    clist.sort()
+    return {"list":clist}
 @app.route("/search")
 def search():
     target = request.args.get('target')
