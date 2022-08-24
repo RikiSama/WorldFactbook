@@ -2,6 +2,13 @@ body{
     font-family: arial;
 }
 
+.county-label{
+    cursor: pointer;
+}
+.continent-label{
+    display: inline-block;
+    cursor: pointer;
+}
 img{
     height:100px;
 }

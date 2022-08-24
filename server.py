@@ -20,11 +20,23 @@ def continent(cont):
         "index.html",
         allCountries = ret
         )
+
+@app.route('/api/country/<name>')
+def apicountry(name):
+    ret= [c for c in w if c['name']==name]
+    return {"result":ret}  
+    
 @app.route("/api/continentList")
 def continentList():
     clist=list(set([c['continent'] for c in w]))
     clist.sort()
     return {"list":clist}
+
+@app.route("/api/getListOfCountries/<cont>")
+def getListOfCountries(cont):
+    ret = [c['name'] for c in w if c['continent'] == cont ]
+    return{"result":ret}
+
 @app.route("/search")
 def search():
     target = request.args.get('target')
