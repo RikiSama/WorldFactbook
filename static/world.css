@@ -5,10 +5,17 @@ body{
 .county-label{
     cursor: pointer;
 }
+
 .continent-label{
     display: inline-block;
     cursor: pointer;
 }
+
 img{
     height:100px;
+}
+
+#countryDetail{
+    border: solid rgb(22, 201, 201);
+    padding: 10px;
 }
