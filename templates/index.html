@@ -2,14 +2,19 @@
 <html>
     <head>
         <link rel="stylesheet" href="static/world.css">
+        <script src="static/world.js" defer></script>
     </head>
 
     <body>
         <h1>World FactBook</h1>
+        <div id=continentList>
+            
+        </div>
         <div>
             <h2>Search</h2>
             <form action="search">
-                <label>Name of country <input name=target></label>
+                <label>Name of country <input name=target placeholder="France"></label>
+                <input type="submit" value="Search">
             </form>
         </div>
         {% for c in allCountries %}

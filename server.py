@@ -1,3 +1,4 @@
+import re
 from flask import Flask,render_template,request
 import json
 
@@ -12,6 +13,16 @@ def index():
 def country(n):
     return render_template("country.html", country=w[int(n)])
 
+@app.route("/continent/<cont>")
+def continent(cont):
+    ret = [c for c in w if c['continent']==cont]
+    return render_template(
+        "index.html",
+        allCountries = ret
+        )
+@app.route("/api/continentList")
+def continentList():
+    return {"list":["Africa","Asia","Europe"]}
 @app.route("/search")
 def search():
     target = request.args.get('target')
