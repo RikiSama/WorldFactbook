@@ -5,11 +5,12 @@
         <script src="/static/world.js" defer></script>
     </head>
     <body>
-        <h1>{{country.name}}</h1>
+        <h2 id="current">{{country.name}}</h2>
         <div><img src ={{country.flag}}></div>
 
         <table>
             <tr>
+                <td>ID</td><td id="currentID">{{country.id}}</td>
                 <td>Continent</td><td>{{country.continent}}</td>
                 <td>Capital</td><td>{{country.capital}}</country></td>
             </tr>

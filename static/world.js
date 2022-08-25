@@ -1,3 +1,16 @@
+document.getElementById('newCountry').onclick = async () => {
+    document.getElementById('countryDetails').innerHTML='';
+    let divName = document.createElement('div');
+    divName.innerHTML = `<label>Country Name: <input id=CountryName></label>`;
+
+    let divID = document.createElement('div');
+    divID.innerHTML = `<label>ID: <input id=ID></label>`;
+
+    let addbotton = document.createElement('button');
+    addbotton.innerText = 'Add New Country'
+    
+    document.getElementById('countryDetails').append(divName,divID,addbotton);
+}
 document.body.onload= async ()=>{
     let ret =await fetch("/api/continentList");
     let cl = await ret.json();
@@ -29,6 +42,8 @@ document.body.onload= async ()=>{
 
 function showOneCountry(cobj){
     document.getElementById('countryDetail').innerHTML = `
+        <h2 id='current'>${cobj.name}</h2>
+        <div> ID:<span id=currentId> ${cobj.id}</span></div>
         <div> Name: ${cobj.name}</div>
         <div> Continent: ${cobj.continent}</div>
         <div> Capial: ${cobj.capital}</div>
@@ -41,5 +56,6 @@ function showOneCountry(cobj){
 }
 
 function doDelete(){
-    console.log("You tried to delete");
+    let victim = document.querySelector('#current').innerText;
+    console.log(`You tried to delete ${victim}`);
 }
