@@ -99,14 +99,43 @@ function human_readable_format(num){
         <div> Population: ${human_readable_format(cobj.population)}</div>
         <div> Gross Domestic Product: ${human_readable_format(cobj.gdp)}</div>
         <img src='${cobj.flag}'>
-        <button onclick='doDelete()'>Delete</delete>
+        <button onclick='doDelete()'>Delete</delete> 
+        
         `;
         console.log(area.format(cobj.area));
         console.log(human_readable_format(cobj.population));
         console.log(human_readable_format(cobj.gdp));
 }
 
-function doDelete(){
-    let victim = document.querySelector('#current').innerText;
-    console.log(`You tried to delete ${victim}`);
+/* function doDelete(){
+document.querySelectorAll('button.del').forEach(c=>{
+        c.onclick=async()=>{
+        console.log(`You tried to delete ${c.dataset.name}`);
+        let dc = await fetch(`/api/country/ ${c.dataset.name}`,{method:'DELETE'})
+        c.parentNode.classList.add('hideslowly')
+        }
+    })
+} */
+
+function doDelete(){ 
+    let victim = document.querySelectorAll('#current').innerText;
+    console.log (`You tried to delete ${victim}`)
+    let r = await fetch(`/api/country/${victim}`,{method:"DELETE"})
+    victim.parentNode.classList.add('hideslowly')
 }
+
+/* function doDelete(){
+    let victim = document.querySelectorAll('#current').innerText;
+    console.log (`You tried to delete ${victim}`)
+} */
+
+
+
+
+/* document.querySelectorAll('button.del').forEach(b=>{
+    b.onclick = async()=>{
+        console.log(`You click to delete ${b.dataset.name}`);
+        let r = await fetch(`/api/country/${b.dataset.name}`,{method:'DELETE'})
+        b.parentNode.classList.add('hideslowly');
+    }
+}) */

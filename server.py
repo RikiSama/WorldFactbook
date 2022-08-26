@@ -1,3 +1,4 @@
+from ast import Delete
 from crypt import methods
 import re
 from flask import Flask,render_template,request
@@ -20,6 +21,7 @@ def newCountry():
     w.append(nc)
     return {}
 
+    
 @app.route("/continent/<cont>")
 def continent(cont):
     ret = [c for c in w if c['continent']==cont]
@@ -43,6 +45,17 @@ def continentList():
 def getListOfCountries(cont):
     ret = [c['name'] for c in w if c['continent'] == cont ]
     return{"result":ret}
+
+@app.route("/api/country/<name>",methods=["GET","DELETE"])
+def deletecount(name):
+    global world
+    if request.method == "GET":
+        ret = [c for c in country if c["name"]==name]
+        return ret[0]
+    if request.method == "DELETE":
+        print(f"you tried to delete{id}")
+        country = [c for c in country if c['name']!=name]
+        return{}
 
 @app.route("/search")
 def search():
