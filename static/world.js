@@ -20,33 +20,33 @@ document.getElementById('newCountry').onclick = async () => {
     divContinent.innerHTML = `<label>Continent: <select id="Continent"> <option>Africa</option> <option>Asia</option> <option>Caribbean</option> <option>Eurasia</option> <option>Europe</option> <option>North America</option> <option>Oceania</option> <option>South America</option> </select></label>`;
 
     let divGDP = document.createElement('div');
-    divGDP.innerHTML = `<label>Gross Domestic Product: type="number" <input id=GDP></label>`;
+    divGDP.innerHTML = `<label>Gross Domestic Product: <input type="number" id=GDP></label>`;
 
     let addbotton = document.createElement('button');
     addbotton.innerText = 'Add New Country'
-
+    
     addbotton.onclick = () =>{
         let payload={
             
-                "result": [
-                  {
+               
                     "area": parseInt(document.getElementById('Area').value),
                     "capital": document.getElementById('Capital').value,
-                    "continent": document.getElementById('Continent').vale,
+                    "continent": document.getElementById('Continent').value,
                     "flag": "//upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_Armenia.svg",
                     "gdp": parseInt(document.getElementById('GDP').value),
                     "id": parseInt(document.getElementById('CID').value),
                     "name": document.getElementById('CountryName').value,
                     "population": parseInt(document.getElementById('Population').value),
                     "tld": ".am"
-                  }
-                ]
+                  
               };
-              fetch('/api/newCountry',{method:'PUT',body: JSON.stringify(payload)});
+              fetch('/api/newCountry',{method:'PUT',body: JSON.stringify(payload),headers:{'content-type':'application/json'}});
+
 
         }
-    
+        
     document.getElementById('countryDetails').append(divName,divID,divContinent,divCapital,divArea,divPopulation,divGDP,addbotton);
+    
 }
 document.body.onload= async ()=>{
     let ret =await fetch("/api/continentList");
@@ -78,18 +78,32 @@ document.body.onload= async ()=>{
 }
 
 function showOneCountry(cobj){
+function human_readable_format(num){
+    if(num>1000000000000){
+        return(num/100000000000).toFixed(1) + ' trillion';
+    }else if(num>1000000000){
+        return(num/1000000000).toFixed(1) + ' billion';
+    }else if(num>1000000){
+        return(num/1000000).toFixed(1) + ' million';   
+    }else
+        return(num)
+}
+    var area = Intl.NumberFormat();
     document.getElementById('countryDetail').innerHTML = `
         <h2 id='current'>${cobj.name}</h2>
         <div> ID:<span id=currentId> ${cobj.id}</span></div>
         <div> Name: ${cobj.name}</div>
         <div> Continent: ${cobj.continent}</div>
         <div> Capial: ${cobj.capital}</div>
-        <div> Area: ${cobj.area}</div>
-        <div> Population: ${cobj.population}</div>
-        <div> Gross Domestic Product: ${cobj.gdp}</div>
+        <div> Area: ${area.format(cobj.area)}</div>
+        <div> Population: ${human_readable_format(cobj.population)}</div>
+        <div> Gross Domestic Product: ${human_readable_format(cobj.gdp)}</div>
         <img src='${cobj.flag}'>
         <button onclick='doDelete()'>Delete</delete>
         `;
+        console.log(area.format(cobj.area));
+        console.log(human_readable_format(cobj.population));
+        console.log(human_readable_format(cobj.gdp));
 }
 
 function doDelete(){

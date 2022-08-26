@@ -1,3 +1,4 @@
+from crypt import methods
 import re
 from flask import Flask,render_template,request
 import json
@@ -12,6 +13,12 @@ def index():
 @app.route("/country/<n>")
 def country(n):
     return render_template("country.html", country=w[int(n)])
+
+@app.route("/api/newCountry",methods=["PUT"])
+def newCountry():
+    nc = request.json
+    w.append(nc)
+    return {}
 
 @app.route("/continent/<cont>")
 def continent(cont):
@@ -45,5 +52,7 @@ def search():
         return country(found[0])
     else:
         return f"Could not find {target}"
+
+
 
 app.run(debug=True)
