@@ -7,13 +7,26 @@ import json
 w = json.load(open("worldl.json"))
 app = Flask(__name__)
 
+def human_readable_format(num):
+    if(num>1000000000000):
+        return str((num/100000000000)) + ' trillion'
+    elif(num>1000000000):
+        return str((num/1000000000)) + ' billion'
+    elif(num>1000000):
+        return str((num/1000000)) + ' million'
+    else:
+        return(num)
+
 @app.route("/")
 def index():
     return render_template("index.html", allCountries = w)
 
 @app.route("/country/<n>")
 def country(n):
-    return render_template("country.html", country=w[int(n)])
+    return render_template("country.html", country=w[int(n)],
+            hrfgdp = human_readable_format(w[int(n)]['gdp']),
+            hrfpop = human_readable_format(w[int(n)]['population']),
+            farea = "{:,}".format(w[int(n)]['area']))
 
 @app.route("/api/newCountry",methods=["PUT"])
 def newCountry():
