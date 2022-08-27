@@ -1,25 +1,73 @@
-#countryDetails{
-    border: solid rgb(100, 96, 100);
-    padding: 10px;
-}
-body{
-    font-family: arial;
-}
-
 .county-label{
     cursor: pointer;
 }
 
 .continent-label{
-    display: inline-block;
-    cursor: pointer;
+   cursor: pointer;
 }
 
-img{
-    height:100px;
+h1{
+    color: #05A96F;
+    font-family: 'Aboreto', cursive;
 }
 
-#countryDetail{
-    border: solid rgb(22, 201, 201);
+h2,p,.ff{
+    font-family: 'DynaPuff', cursive;
+    color: #787e83;
+    font-weight: lighter;
+}
+
+.card-title, .card-text{
+    font-family: 'DynaPuff', cursive;
+    color: #787e83;
     
+}
+
+.card-text a:hover{
+    color: #343A3F;
+    text-decoration: none;
+}
+
+.cdd{
+    color: black;
+}
+
+.bb{
+    font-family: 'DynaPuff', cursive;
+}
+
+.cd{
+    font-family: 'DynaPuff', cursive;
+    color: #002664;
+    line-height: 3;
+    word-spacing: 3px;
+    font-size: 15px;
+}
+
+.cd1{
+    font-family: 'DynaPuff', cursive;
+    color: black;
+    font-size: 35px;
+}
+
+#continentList .continent-label:hover{
+    color: #05A96F;
+}
+
+#countrylistbycon{
+    font-size: 2em;
+    color:  #05A96F;
+}
+
+.h{
+    padding: 20px;
+    margin-top: 70px;
+}
+
+.ff{
+    text-align: right;
+}
+
+.cdl{
+    margin-top: 80px;
 }

@@ -1,28 +1,180 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="/static/world.css">
-        <script src="/static/world.js" defer></script>
-    </head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.101.0">
+    <title>Index</title>
 
-    <body>
-        <h1>World FactBook</h1>
-        <div>
-            <button id="newCountry">Add New country</button>
-            <div id="countryDetails"></div>
+    <!-- Bootstrap5.2 -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/jumbotron/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aboreto&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="/static/world.css">
+    <script src="/static/world.js" defer></script>
+
+  </head>
+  <body>
+    
+  <main>
+    <div class="container py-4">
+    <!-- header -->
+      <header class="pb-3 mb-4">
+        <nav class="navbar navbar-expand-lg bg-secondary fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="/">
+              <img src="../static/img/worldwide.png" width="40" height="40" alt="" loading="lazy">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item submenu dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">Continent</a>
+                    <div class="dropdown-menu">
+                          <span class="dropdown-item-text" id="continentList"></span>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Population
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Large Population</a></li>
+                    <li><a class="dropdown-item" href="#">Small Population</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <form class="d-flex" action="search">
+                <input class="form-control me-2" type="text" name=target placeholder="CountryName">
+                <button class="btn btn-outline-light bb" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <!-- /header -->
+
+      <!-- container -->
+      <div class="p-5 mb-4 bg-light rounded-3 mt-5">
+        <div class="container-fluid py-5 mt-3 text-center">
+          <h1 class="display-3 fw-bold">World Factbook</h1>   
         </div>
-        <div id=continentList>
-            
+      </div>
+      <!-- /container -->
+
+      <!-- country list by countinent -->
+      <div class="row justify-content-md-center">
+        <div class="col-md-auto mb-4">
+          <h2 class="display-5 text-muted text-center">Countries List By  <span id="countrylistbycon"> </span></h2>
         </div>
-        <div id = "countryDetail">
-        </div> 
-        <div>
-            <h2>Search</h2>
-            <form action="search">
-                <label>Name of country <input name=target placeholder="France"></label>
-                <input type="submit" value="Search">
-            </form>
+      </div>
+
+      <div class="row align-items-md-stretch mb-5">
+        <div class="col-md-6">
+          <div class="h-100 p-5 text-bg-secondary rounded-3">
+            <p  id = "listOfCountries"></p>
+          </div>
         </div>
-        <div id = "listOfCountries"></div>
-    </body>
+        <div class="col-md-6">
+          <div class="h-100 p-5 bg-light border rounded-3">
+            <div id = "countryDetail"></div> 
+          </div>
+        </div>
+      </div>
+      <!-- /country list by countinent -->
+
+      <hr>
+
+      <!-- add new country -->
+      <div class="row justify-content-md-center mt-5 ">
+        <div class="col-md-auto mb-4">
+          <h2 class="text-center">Add New Country</h2>
+        </div>
+      </div>
+      <div class="row justify-content-md-center mt-2">
+        <div class="col col-lg-2"></div>
+        <div class="col-md-auto mb-3">
+          <span class="input-group-btn ff">
+            <button id="newCountry" class="btn btn-secondary" type="submit">Add New Country</button>
+            <br><br>
+                <div id="countryDetails"></div>
+          </span>
+        </div>
+        <div class="col col-lg-2"></div>
+      </div>
+      <!-- /add new country -->
+
+      <!-- footer -->
+      <footer class="pt-3 mt-4 text-muted border-top">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-4">
+              <div class="social-icons">
+                <span class="fa-stack">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-dribbble fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-5">
+                    <small class="">If you want to see clearly the countries of a Continent,
+                        Click Reload Button or not.</small>
+                </div>
+                <div class="col-md-2">
+                    <button onclick = "locationreload()" type="button" class="btn btn-secondary">Reload Page</button>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- /footer -->
+      
+    </div>
+  </main>
+  <script>
+    function locationreload() {
+        location.reload();   
+    }
+    const btn = document.getElementById('newCountry');
+
+    btn.addEventListener('click', () => {
+    //hide button (still takes up space on page)
+    btn.style.visibility = 'hidden';
+    }); 
+  </script>
+  </body>
 </html>
