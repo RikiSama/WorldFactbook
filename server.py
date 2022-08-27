@@ -80,6 +80,18 @@ def search():
     else:
         return f"Could not find {target}"
 
+@app.route("/largepopl")
+def largepopl():
+    largepopl = sorted(w, key=lambda c: c['population'], reverse=True)[:9]
+    return render_template('population.html',
+            description = 'Large Amount of Population',
+            allCountries = largepopl)
 
+@app.route("/smallpopl")
+def smallpopl():
+    smallpopl = sorted(w, key=lambda c: c['population'], reverse=False)[:9]
+    return render_template('population.html',
+            description = 'Small Amount of Population',
+            allCountries = smallpopl)
 
 app.run(debug=True)
