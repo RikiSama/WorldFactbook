@@ -71,3 +71,40 @@ h2,p,.ff{
 .cdl{
     margin-top: 80px;
 }
+
+.tooltip-right {
+    /* Modify size */
+    --size: 20px;
+    --padding: 10px;
+  
+    position: relative;
+    width: calc(var(--size) - var(--padding));
+    height: calc(var(--size) / 2);
+    background: #333;
+    padding: var(--padding);
+}
+  
+.tooltip-right:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: #333;
+    height: 16px;
+    width: 16px;
+}
+
+.lp{
+    position: relative;
+    overflow: hidden;
+    padding: 50px;
+    background: #f0f0f0;
+    text-align: center;
+}
+
+.fa-ul li{
+    list-style-type: disc;
+    padding: 3px;
+    margin-left: 25px;
+}
