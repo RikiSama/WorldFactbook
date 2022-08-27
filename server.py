@@ -48,13 +48,14 @@ def getListOfCountries(cont):
 
 @app.route("/api/country/<name>",methods=["GET","DELETE"])
 def deletecount(name):
-    global world
+    global w
     if request.method == "GET":
-        ret = [c for c in country if c["name"]==name]
+        ret = [c for c in w if c["name"]==name]
+        print (ret[0])  
         return ret[0]
     if request.method == "DELETE":
-        print(f"you tried to delete{id}")
-        country = [c for c in country if c['name']!=name]
+        print(f"you tried to delete{name}")
+        w = [c for c in w if c['name']!=name]
         return{}
 
 @app.route("/search")

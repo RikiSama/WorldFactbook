@@ -90,7 +90,7 @@ function human_readable_format(num){
 }
     var area = Intl.NumberFormat();
     document.getElementById('countryDetail').innerHTML = `
-        <h2 id='current'>${cobj.name}</h2>
+        <h2 class='current'>${cobj.name}</h2>
         <div> ID:<span id=currentId> ${cobj.id}</span></div>
         <div> Name: ${cobj.name}</div>
         <div> Continent: ${cobj.continent}</div>
@@ -99,8 +99,7 @@ function human_readable_format(num){
         <div> Population: ${human_readable_format(cobj.population)}</div>
         <div> Gross Domestic Product: ${human_readable_format(cobj.gdp)}</div>
         <img src='${cobj.flag}'>
-        <button onclick='doDelete()'>Delete</delete> 
-        
+        <button onclick='doDelete()' class='del'>Delete</delete> 
         `;
         console.log(area.format(cobj.area));
         console.log(human_readable_format(cobj.population));
@@ -117,19 +116,22 @@ document.querySelectorAll('button.del').forEach(c=>{
     })
 } */
 
-function doDelete(){ 
+/* function doDelete(){ 
     let victim = document.querySelectorAll('#current').innerText;
     console.log (`You tried to delete ${victim}`)
-    let r = await fetch(`/api/country/${victim}`,{method:"DELETE"})
+    let r = await fetch(`/api/country/${victim}`,{methods:"DELETE"})
     victim.parentNode.classList.add('hideslowly')
-}
-
-/* function doDelete(){
-    let victim = document.querySelectorAll('#current').innerText;
-    console.log (`You tried to delete ${victim}`)
 } */
 
+async function doDelete(){
+    let victim = document.querySelector('h2.current').innerText;
+    console.log (`You tried to delete ${victim}`);
+    let r = await fetch(`/api/country/${victim}`,{method:"DELETE"})
+    let r1 = await r.json();
+    console.log('deleting button success ');
+    location.reload()
 
+}
 
 
 /* document.querySelectorAll('button.del').forEach(b=>{
