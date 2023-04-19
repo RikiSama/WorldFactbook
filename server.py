@@ -3,6 +3,7 @@ from crypt import methods
 import re
 from flask import Flask,render_template,request
 import json
+import humanize 
 
 w = json.load(open("worldl.json"))
 app = Flask(__name__)
@@ -85,13 +86,14 @@ def largepopl():
     largepopl = sorted(w, key=lambda c: c['population'], reverse=True)[:9]
     return render_template('population.html',
             description = 'Large Amount of Population',
-            allCountries = largepopl)
+            allCountries = largepopl,  
+            )
 
 @app.route("/smallpopl")
-def smallpopl():
+def smallpopl(population):
     smallpopl = sorted(w, key=lambda c: c['population'], reverse=False)[:9]
     return render_template('population.html',
             description = 'Small Amount of Population',
-            allCountries = smallpopl)
-
+            allCountries = smallpopl,
+            )
 app.run(debug=True)
